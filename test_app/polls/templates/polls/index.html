@@ -1,0 +1,76 @@
+<html>
+
+<head>
+  <title>Polling Center</title>
+  <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
+  <style>
+    html {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      justify-content: center;
+      align-items: center !important;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      justify-content: center;
+      align-items: center !important;
+      font-family: 'Overpass Mono', monospace;
+    }
+
+    li {
+      display: flex;
+      flex: 1;
+      list-style: none;
+      padding: 10px;
+      margin: 10px 10px 10px -30px;
+      border: 2px solid #000;
+
+    }
+
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    li:hover {
+      color: #fff;
+      background-color: hsl(0, 90%, 65%);
+      border-radius: 3px;
+      transition: all .35s;
+    }
+
+    h1 {
+      text-tranform: capitalize;
+      font-style: italic;
+      font-size: 2rem;
+      color: #fff;
+      background-color: hsl(0, 90%, 65%);
+      font-weight: bolder;
+      padding: 2rem;
+      margin-bottom: 10px;
+      border: 2px solid #000;
+      border-radius: 3px;
+      text-shadow: 2px 2px 0px #000;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1>Welcome to the polls.</h1>
+  {% if latest_question_list %}
+  <ul>
+    {% for question in latest_question_list %}
+    <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No polls are available.</p>
+  {% endif %}
+</body>
+
+</html>
